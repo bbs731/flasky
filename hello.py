@@ -8,6 +8,7 @@ from wtforms.validators import Required
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
+app.debug = True
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)

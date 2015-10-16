@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
@@ -8,6 +8,7 @@ from wtforms.validators import Required
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
+app.debug = True
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)

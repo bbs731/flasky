@@ -31,3 +31,10 @@ class RegistrationForm(Form):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError('Username already in use.')
 
+class ChangePasswordForm(Form):
+    old_password = PasswordField('Old password', validators=[Required()])
+    password = PasswordField('New Password', validators=[
+        Required(), EqualTo('password2', message='Passwords must mach')])
+    password2 = PasswordField('Confirm new passowrd', validators=[Required()])
+    submit = SubmitField('Update Password')
+    

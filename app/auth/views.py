@@ -82,7 +82,7 @@ def resend_confirmation():
 def change_password():
     form = ChangePasswordForm()
     if form.validate_on_submit():
-        if current_uesr.verify_password(form.old_password.data):
+        if current_user.verify_password(form.old_password.data):
             current_user.password = form.password.data
             db.session.add(current_user)
             flash('Your password has been updated.')

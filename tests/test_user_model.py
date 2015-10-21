@@ -10,6 +10,7 @@ class UserModelTestCase(unittest.TestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
+        Role.insert_roles()
 
     def tearDown(self):
         db.session.remove()
@@ -116,11 +117,4 @@ class UserModelTestCase(unittest.TestCase):
         u = AnonymousUser()
         self.assertFalse(u.can(Permission.FOLLOW))
 
-    def test_timestamps(self):
-        u = User(password='cat')
-        db.session.add(u)
-        db.session.commit()
-        self.assertTrue(
-            (datetime.utcnow() - u.member_since).total_seconds() < 3)
-        self.assertTrue(
-            (datetime.utcnow() - u.last_seen).total_seconds < 3)
+        
